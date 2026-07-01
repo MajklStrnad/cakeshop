@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Maison Lune — Couture svatební dorty</title>
+<meta name="description" content="Maison Lune je editoriální ateliér svatebních dortů — sochařské patrové dorty se smetanou, zlatem a čerstvými květinami." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root{
+    --ivory:#f7f1e6;
+    --cream:#efe6d4;
+    --ink:#2a1f17;
+    --rose:#c89a8e;
+    --gold:#b69256;
+    --muted:#7a6b5d;
+    --border:#e5dbc8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--ivory);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+  .serif{font-family:'Cormorant Garamond',serif;font-weight:500}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  img,video{display:block;max-width:100%}
+  .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+  .hairline{height:1px;background:var(--border);margin:0 auto;width:66%}
+
+  /* HERO */
+  .hero{position:relative}
+  .hero-sticky{position:relative;height:100vh;width:100%;overflow:hidden;background:var(--ivory)}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(40,30,20,.28) 100%)}
+  header.nav{position:absolute;inset:0 0 auto 0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:24px 32px;mix-blend-mode:difference;color:var(--ivory)}
+  @media(min-width:768px){header.nav{padding:32px 56px}}
+  .brand{font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:.04em}
+  .navlinks{display:none;gap:40px;font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+  @media(min-width:768px){.navlinks{display:flex}}
+  .nav-right{display:flex;align-items:center;gap:24px}
+  .lang{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+  .lang button{opacity:.6}
+  .lang button.active{opacity:1;text-decoration:underline;text-underline-offset:4px}
+  .lang .sep{opacity:.4}
+  .book{font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+  .scroll-tag{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:30;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--ivory);mix-blend-mode:difference}
+
+  .card{position:absolute;z-index:20;pointer-events:none;opacity:0;will-change:opacity,transform;transition:opacity 140ms linear,transform 220ms ease-out}
+  .card .inner{background:rgba(247,241,230,.95);backdrop-filter:blur(8px);padding:28px 32px;border-radius:2px;box-shadow:0 40px 80px -30px rgba(40,30,20,.5);box-shadow:0 40px 80px -30px rgba(40,30,20,.5),0 0 0 1px rgba(0,0,0,.05)}
+  .card h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;line-height:1.05;color:var(--ink)}
+  @media(min-width:768px){.card h2{font-size:38px}}
+  .card p{margin-top:12px;font-size:15px;line-height:1.6;color:rgba(42,31,23,.8)}
+  .card .eyebrow{margin-bottom:12px}
+
+  /* card positions */
+  .c1{top:14%;left:6%;max-width:440px;text-align:left}
+  .c2{bottom:16%;right:6%;max-width:360px;text-align:right}
+  .c3{top:20%;right:7%;max-width:360px;text-align:right}
+  .c4{bottom:18%;left:6%;max-width:360px;text-align:left}
+  .c5{bottom:12%;left:50%;max-width:440px;text-align:center}
+
+  /* SECTIONS */
+  section.block{padding:128px 24px}
+  @media(min-width:768px){section.block{padding:176px 56px}}
+  .wrap{max-width:72rem;margin:0 auto}
+  .wrap-sm{max-width:64rem;margin:0 auto}
+
+  .gallery-head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:64px}
+  .gallery-head h2{font-family:'Cormorant Garamond',serif;font-size:48px;line-height:1.02;max-width:42rem}
+  @media(min-width:768px){.gallery-head h2{font-size:80px}}
+  .gallery-link{display:none}
+  @media(min-width:768px){.gallery-link{display:inline;font-size:11px;letter-spacing:.28em;text-transform:uppercase;flex-shrink:0}}
+
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+  @media(min-width:768px){.grid{gap:24px}}
+  .tile{position:relative;overflow:hidden;background:var(--cream)}
+  .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease-out}
+  .tile:hover img{transform:scale(1.03)}
+  .tile figcaption{position:absolute;inset:auto 0 0 0;padding:20px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ivory);background:linear-gradient(to top,rgba(0,0,0,.5),transparent);opacity:0;transition:opacity .5s}
+  .tile:hover figcaption{opacity:1}
+  .t1{grid-column:span 12;aspect-ratio:4/5}
+  .t-col{grid-column:span 12;display:flex;flex-direction:column;gap:16px}
+  @media(min-width:768px){.t-col{gap:24px}}
+  .t2{aspect-ratio:4/3}
+  .t3{aspect-ratio:1/1}
+  .t4,.t5{grid-column:span 6;aspect-ratio:3/4}
+  .t6{grid-column:span 12;aspect-ratio:3/4}
+  @media(min-width:768px){
+    .t1{grid-column:span 7}
+    .t-col{grid-column:span 5}
+    .t4,.t5,.t6{grid-column:span 4}
+  }
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:40px}
+  .about-l{grid-column:span 12}
+  .about-r{grid-column:span 12}
+  @media(min-width:768px){.about-l{grid-column:span 4}.about-r{grid-column:span 8}}
+  .lead{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.25}
+  @media(min-width:768px){.lead{font-size:38px}}
+  .lead em{font-style:italic}
+  .about-body{margin-top:32px;max-width:36rem;font-size:15px;line-height:1.7;color:var(--muted)}
+  .stats{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid var(--border);padding-top:32px}
+  .stat-k{font-family:'Cormorant Garamond',serif;font-size:30px}
+  .stat-v{margin-top:4px;font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted)}
+
+  /* CONTACT */
+  .contact{background:var(--cream)}
+  .contact-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:40px}
+  .contact-l{grid-column:span 12}
+  .contact-r{grid-column:span 12}
+  @media(min-width:768px){.contact-l{grid-column:span 5}.contact-r{grid-column:span 7}}
+  .contact h2{font-family:'Cormorant Garamond',serif;font-size:48px;line-height:1.02;margin-top:8px}
+  @media(min-width:768px){.contact h2{font-size:64px}}
+  .contact-body{margin-top:24px;max-width:24rem;font-size:14px;line-height:1.7;color:var(--muted)}
+  .contact-info{margin-top:40px;font-size:14px;line-height:1.8}
+  .contact-info .muted{margin-top:16px;color:var(--muted)}
+  form{display:flex;flex-direction:column;gap:24px}
+  label.field{display:block}
+  label.field input,label.field textarea{margin-top:8px;width:100%;background:transparent;border:0;border-bottom:1px solid var(--border);padding:8px 0;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);outline:none;resize:none}
+  label.field input:focus,label.field textarea:focus{border-color:var(--ink)}
+  button.send{display:inline-flex;align-items:center;gap:12px;border-bottom:1px solid var(--ink);padding-bottom:8px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;align-self:flex-start}
+  button.send span{transition:transform .3s}
+  button.send:hover span{transform:translateX(4px)}
+
+  footer{border-top:1px solid var(--border);padding:40px 24px}
+  @media(min-width:768px){footer{padding:40px 56px}}
+  .foot{max-width:72rem;margin:0 auto;display:flex;flex-direction:column;justify-content:space-between;gap:16px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+  @media(min-width:768px){.foot{flex-direction:row;align-items:center}}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero" id="hero">
+    <div class="hero-sticky" id="heroSticky">
+      <header class="nav">
+        <span class="brand">Maison Lune</span>
+        <nav class="navlinks">
+          <a href="#gallery" data-t="navAtelier">Ateliér</a>
+          <a href="#about" data-t="navMaison">Maison</a>
+          <a href="#contact" data-t="navInquire">Poptat</a>
+        </nav>
+        <div class="nav-right">
+          <div class="lang">
+            <button id="langCs" class="active">CZ</button>
+            <span class="sep">/</span>
+            <button id="langEn">EN</button>
+          </div>
+          <a href="#contact" class="book" data-t="book">Rezervovat</a>
+        </div>
+      </header>
+
+      <video id="heroVideo" class="hero-video" muted playsinline preload="auto" disablepictureinpicture
+        src="assets/hero-cake.mp4"></video>
+      <div class="hero-vignette"></div>
+
+      <div class="card c1" data-at="0.08" data-span="0.16">
+        <div class="inner">
+          <div class="eyebrow" data-t="c1e">Zal. 2014 — Paříž & New York</div>
+          <h2 data-t="c1t">Maison Lune</h2>
+          <p data-t="c1b">Couture ateliér pro dort, který korunuje svatební den.</p>
+        </div>
+      </div>
+      <div class="card c2" data-at="0.30" data-span="0.15">
+        <div class="inner">
+          <div class="eyebrow" data-t="c2e">Patro I</div>
+          <h2 data-t="c2t">Tvarováno ručně, nikdy do formy.</h2>
+        </div>
+      </div>
+      <div class="card c3" data-at="0.52" data-span="0.15">
+        <div class="inner">
+          <div class="eyebrow" data-t="c3e">Signature</div>
+          <p data-t="c3b">Vanilkové génoise s bourbonem, crème fraîche, normandské máslo — dokončeno jedlým 24k zlatem a růžemi řezanými téhož rána.</p>
+        </div>
+      </div>
+      <div class="card c4" data-at="0.74" data-span="0.15">
+        <div class="inner">
+          <div class="eyebrow" data-t="c4e">Kompozice č. 04</div>
+          <h2 data-t="c4t">Čtyři patra. Jedno tiché gesto.</h2>
+        </div>
+      </div>
+      <div class="card c5" data-at="0.94" data-span="0.12" style="transform:translateX(-50%)">
+        <div class="inner">
+          <div class="eyebrow" data-t="c5e">Pokračujte níže</div>
+          <h2 data-t="c5t">Dort, promyšlený.</h2>
+        </div>
+      </div>
+
+      <div class="scroll-tag" data-t="scroll">Scroll</div>
+    </div>
+  </section>
+
+  <section id="gallery" class="block">
+    <div class="wrap">
+      <div class="gallery-head">
+        <div>
+          <div class="eyebrow" data-t="galleryEyebrow">Ateliér — Vybrané práce</div>
+          <h2 data-t="galleryTitle" style="margin-top:16px">Každá zakázka, jediná edice.</h2>
+        </div>
+        <a href="#contact" class="gallery-link" data-t="galleryLink">Celé portfolio →</a>
+      </div>
+      <div class="grid">
+        <figure class="tile t1"><img loading="lazy" src="assets/gallery-1.jpg" alt=""><figcaption data-t="cap0">č. 014 — Lune in Bloom</figcaption></figure>
+        <div class="t-col">
+          <figure class="tile t2"><img loading="lazy" src="assets/gallery-2.jpg" alt=""><figcaption data-t="cap1">Detail — zlatý plátek</figcaption></figure>
+          <figure class="tile t3"><img loading="lazy" src="assets/gallery-3.jpg" alt=""><figcaption data-t="cap2">č. 011 — Solitaire</figcaption></figure>
+        </div>
+        <figure class="tile t4"><img loading="lazy" src="assets/gallery-4.jpg" alt=""><figcaption data-t="cap3">Servis — stůl</figcaption></figure>
+        <figure class="tile t5"><img loading="lazy" src="assets/gallery-5.jpg" alt=""><figcaption data-t="cap4">První řez</figcaption></figure>
+        <figure class="tile t6"><img loading="lazy" src="assets/gallery-6.jpg" alt=""><figcaption data-t="cap5">č. 019 — Rose Brume</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <section id="about" class="block">
+    <div class="wrap-sm about-grid">
+      <div class="about-l"><div class="eyebrow" data-t="maisonEyebrow">Maison</div></div>
+      <div class="about-r">
+        <p class="lead" data-t="maisonLead">Maison Lune byl založen v úzké kuchyni v pařížském Marais v roce 2014 cukrářkou <em>Hélène Auberge</em>, s jediným přesvědčením — že svatební dort není dezert, ale tichý jedlý monument.</p>
+        <p class="about-body" data-t="maisonBody">Každou sezónu přijímáme omezený počet zakázek. Každý dort vzniká v ateliéru spolu s párem — chuť, silueta, květiny z ranního trhu — a je doručen ručně odpoledne před oslavou.</p>
+        <div class="stats">
+          <div><div class="stat-k">120</div><div class="stat-v" data-t="stat0">zakázek ročně</div></div>
+          <div><div class="stat-k">2</div><div class="stat-v" data-t="stat1">ateliéry — Paříž, NY</div></div>
+          <div><div class="stat-k">48h</div><div class="stat-v" data-t="stat2">z pece až k oltáři</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="block contact">
+    <div class="wrap-sm contact-grid">
+      <div class="contact-l">
+        <div class="eyebrow" data-t="contactEyebrow">Poptávka</div>
+        <h2 data-t="contactTitle">Začněte zakázku.</h2>
+        <p class="contact-body" data-t="contactBody">Povězte nám o dni. Odpovídáme na každou poptávku do dvou pracovních dnů a rezervujeme šest až devět měsíců dopředu.</p>
+        <div class="contact-info">
+          <div>atelier@maisonlune.com</div>
+          <div>+33 1 42 00 00 00</div>
+          <div class="muted">17 rue des Archives, 75004 Paris<br>88 Greene Street, New York</div>
+        </div>
+      </div>
+      <form class="contact-r" onsubmit="event.preventDefault()">
+        <label class="field"><span class="eyebrow" data-t="name">Jméno</span><input type="text"></label>
+        <label class="field"><span class="eyebrow" data-t="email">E-mail</span><input type="email"></label>
+        <label class="field"><span class="eyebrow" data-t="date">Datum svatby</span><input type="text" data-t-ph="datePh" placeholder="červen 2026"></label>
+        <label class="field"><span class="eyebrow" data-t="msg">Povězte nám o dni</span><textarea rows="3"></textarea></label>
+        <button class="send" type="submit"><span data-t="send">Odeslat poptávku</span><span>→</span></button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div data-t="footerL">Maison Lune — Svatební ateliér</div>
+      <div>© <span id="yr"></span> <span data-t="footerR">— Všechny dorty stavěny ručně.</span></div>
+    </div>
+  </footer>
+</main>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const T = {
+  cs:{navAtelier:"Ateliér",navMaison:"Maison",navInquire:"Poptat",book:"Rezervovat",scroll:"Scroll",
+    galleryEyebrow:"Ateliér — Vybrané práce",galleryTitle:"Každá zakázka, jediná edice.",galleryLink:"Celé portfolio →",
+    cap0:"č. 014 — Lune in Bloom",cap1:"Detail — zlatý plátek",cap2:"č. 011 — Solitaire",cap3:"Servis — stůl",cap4:"První řez",cap5:"č. 019 — Rose Brume",
+    maisonEyebrow:"Maison",
+    maisonLead:'Maison Lune byl založen v úzké kuchyni v pařížském Marais v roce 2014 cukrářkou <em>Hélène Auberge</em>, s jediným přesvědčením — že svatební dort není dezert, ale tichý jedlý monument.',
+    maisonBody:"Každou sezónu přijímáme omezený počet zakázek. Každý dort vzniká v ateliéru spolu s párem — chuť, silueta, květiny z ranního trhu — a je doručen ručně odpoledne před oslavou.",
+    stat0:"zakázek ročně",stat1:"ateliéry — Paříž, NY",stat2:"z pece až k oltáři",
+    contactEyebrow:"Poptávka",contactTitle:"Začněte zakázku.",contactBody:"Povězte nám o dni. Odpovídáme na každou poptávku do dvou pracovních dnů a rezervujeme šest až devět měsíců dopředu.",
+    name:"Jméno",email:"E-mail",date:"Datum svatby",datePh:"červen 2026",msg:"Povězte nám o dni",send:"Odeslat poptávku",
+    footerL:"Maison Lune — Svatební ateliér",footerR:"— Všechny dorty stavěny ručně.",
+    c1e:"Zal. 2014 — Paříž & New York",c1t:"Maison Lune",c1b:"Couture ateliér pro dort, který korunuje svatební den.",
+    c2e:"Patro I",c2t:"Tvarováno ručně, nikdy do formy.",
+    c3e:"Signature",c3b:"Vanilkové génoise s bourbonem, crème fraîche, normandské máslo — dokončeno jedlým 24k zlatem a růžemi řezanými téhož rána.",
+    c4e:"Kompozice č. 04",c4t:"Čtyři patra. Jedno tiché gesto.",
+    c5e:"Pokračujte níže",c5t:"Dort, promyšlený."
+  },
+  en:{navAtelier:"Atelier",navMaison:"Maison",navInquire:"Inquire",book:"Book",scroll:"Scroll",
+    galleryEyebrow:"The Atelier — Selected Work",galleryTitle:"Each commission, a single edition.",galleryLink:"View full portfolio →",
+    cap0:"No. 014 — Lune in Bloom",cap1:"Detail — gold leaf",cap2:"No. 011 — Solitaire",cap3:"Service — the table",cap4:"The first slice",cap5:"No. 019 — Rose Brume",
+    maisonEyebrow:"The Maison",
+    maisonLead:'Maison Lune was founded in a narrow Marais kitchen in 2014 by pastry chef <em>Hélène Auberge</em>, with a single conviction — that the wedding cake is not a dessert but a quiet, edible monument.',
+    maisonBody:"We accept a limited number of commissions each season. Every cake is composed in studio with the couple — flavour, silhouette, flowers from the morning market — and delivered, by hand, the afternoon of the celebration.",
+    stat0:"commissions a year",stat1:"ateliers — Paris, NY",stat2:"from oven to aisle",
+    contactEyebrow:"Inquire",contactTitle:"Begin a commission.",contactBody:"Tell us about the day. We respond to every inquiry within two business days, and book six to nine months in advance.",
+    name:"Name",email:"Email",date:"Wedding date",datePh:"June 2026",msg:"Tell us about the day",send:"Send inquiry",
+    footerL:"Maison Lune — Atelier de Mariage",footerR:"— All cakes hand-built.",
+    c1e:"Est. 2014 — Paris & New York",c1t:"Maison Lune",c1b:"A couture atelier for the cakes that crown a wedding day.",
+    c2e:"Tier I",c2t:"Sculpted by hand, never by mould.",
+    c3e:"The Signature",c3b:"Vanilla bourbon génoise, crème fraîche, cultured butter from Normandy — finished with edible 24k gold and garden roses cut the morning of.",
+    c4e:"Composition no. 04",c4t:"Four tiers. One quiet gesture.",
+    c5e:"Scroll to continue",c5t:"A cake, considered."
+  }
+};
+let lang = 'cs';
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const k=el.getAttribute('data-t'); if(T[lang][k]!=null) el.innerHTML=T[lang][k];
+  });
+  document.querySelectorAll('[data-t-ph]').forEach(el=>{
+    const k=el.getAttribute('data-t-ph'); if(T[lang][k]!=null) el.setAttribute('placeholder',T[lang][k]);
+  });
+  document.getElementById('langCs').classList.toggle('active', lang==='cs');
+  document.getElementById('langEn').classList.toggle('active', lang==='en');
+}
+document.getElementById('langCs').addEventListener('click',()=>{lang='cs';applyLang()});
+document.getElementById('langEn').addEventListener('click',()=>{lang='en';applyLang()});
+applyLang();
+
+// Scroll-scrubbed video + cards
+gsap.registerPlugin(ScrollTrigger);
+const video = document.getElementById('heroVideo');
+const hero = document.getElementById('hero');
+const sticky = document.getElementById('heroSticky');
+const cards = Array.from(document.querySelectorAll('.card'));
+let ready=false, progress=0, targetTime=0, rafId=0, duration=10;
+
+function setCards(){
+  cards.forEach(el=>{
+    const at=parseFloat(el.dataset.at), span=parseFloat(el.dataset.span||'0.12');
+    const d=Math.abs(progress-at), plateau=span*0.6, fade=span-plateau;
+    const op = !ready ? 0 : (d<=plateau ? 1 : Math.max(0, 1-(d-plateau)/fade));
+    const drift = (1-op)*12;
+    const centerX = el.classList.contains('c5') ? ' translateX(-50%)' : '';
+    el.style.opacity = op;
+    el.style.transform = `translate3d(0,${drift}px,0)${centerX}`;
+  });
+}
+
+function tick(){ rafId=0; if(Math.abs(video.currentTime-targetTime)>0.001){ try{video.currentTime=targetTime}catch(e){} } }
+
+function init(){
+  ready=true; duration=video.duration||10;
+  video.play().then(()=>video.pause()).catch(()=>{});
+  ScrollTrigger.create({
+    trigger: hero, start:"top top", end:()=>"+="+(window.innerHeight*6),
+    pin: sticky, pinSpacing:true, scrub:0.25,
+    onUpdate:(self)=>{
+      progress=self.progress;
+      targetTime=Math.min(duration-0.001, Math.max(0, progress*duration));
+      if(!rafId) rafId=requestAnimationFrame(tick);
+      setCards();
+    }
+  });
+  setCards();
+}
+if(video.readyState>=1 && video.duration) init();
+else video.addEventListener('loadedmetadata', init, {once:true});
+</script>
+</body>
+</html>
