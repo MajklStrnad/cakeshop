@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Maison Lune — Couture svatební dorty</title>
-<meta name="description" content="Maison Lune je editoriální ateliér svatebních dortů — sochařské patrové dorty se smetanou, zlatem a čerstvými květinami." />
+<title>U Lenky v troubě — Domácí dorty z Beroun</title>
+<meta name="description" content="U Lenky v troubě — Čerstvé domácí dorty pečené s láskou v Berouně. Každý dort je jedinečný, vyrobený ručně s nejlepšími ingrediencemi." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
     --gold:#b69256;
     --muted:#7a6b5d;
     --border:#e5dbc8;
+    --warm:#d4a574;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:var(--ivory);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
@@ -34,7 +35,7 @@
   .hero-sticky{position:relative;height:100vh;width:100%;overflow:hidden;background:var(--ivory)}
   .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .hero-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(40,30,20,.28) 100%)}
-  header.nav{position:absolute;inset:0 0 auto 0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:24px 32px;mix-blend-mode:difference;color:var(--ivory)}
+  header.nav{position:absolute;inset:0 0 auto 0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:24px 32px;color:var(--ivory);background:linear-gradient(to bottom,rgba(42,31,23,.7),rgba(42,31,23,.3));backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.1)}
   @media(min-width:768px){header.nav{padding:32px 56px}}
   .brand{font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:.04em}
   .navlinks{display:none;gap:40px;font-size:11px;letter-spacing:.28em;text-transform:uppercase}
@@ -48,11 +49,12 @@
   .scroll-tag{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:30;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--ivory);mix-blend-mode:difference}
 
   .card{position:absolute;z-index:20;pointer-events:none;opacity:0;will-change:opacity,transform;transition:opacity 140ms linear,transform 220ms ease-out}
-  .card .inner{background:rgba(247,241,230,.95);backdrop-filter:blur(8px);padding:28px 32px;border-radius:2px;box-shadow:0 40px 80px -30px rgba(40,30,20,.5);box-shadow:0 40px 80px -30px rgba(40,30,20,.5),0 0 0 1px rgba(0,0,0,.05)}
-  .card h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;line-height:1.05;color:var(--ink)}
+  .card .inner{background:rgba(247,241,230,.92);backdrop-filter:blur(16px);padding:28px 32px;border-radius:8px;box-shadow:0 40px 80px -30px rgba(40,30,20,.5),0 0 0 1px rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.15);transition:all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)}
+  .card h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;line-height:1.05;color:var(--ink);transition:color 300ms ease}
   @media(min-width:768px){.card h2{font-size:38px}}
-  .card p{margin-top:12px;font-size:15px;line-height:1.6;color:rgba(42,31,23,.8)}
+  .card p{margin-top:12px;font-size:15px;line-height:1.6;color:rgba(42,31,23,.8);transition:color 300ms ease}
   .card .eyebrow{margin-bottom:12px}
+  .card:hover .inner{background:rgba(247,241,230,.96);box-shadow:0 60px 120px -20px rgba(40,30,20,.4),0 0 0 1px rgba(255,255,255,.25);transform:translateY(-4px)}
 
   /* card positions */
   .c1{top:14%;left:6%;max-width:440px;text-align:left}
@@ -136,11 +138,11 @@
   <section class="hero" id="hero">
     <div class="hero-sticky" id="heroSticky">
       <header class="nav">
-        <span class="brand">Maison Lune</span>
+        <span class="brand">U Lenky v troubě</span>
         <nav class="navlinks">
-          <a href="#gallery" data-t="navAtelier">Ateliér</a>
-          <a href="#about" data-t="navMaison">Maison</a>
-          <a href="#contact" data-t="navInquire">Poptat</a>
+          <a href="#gallery" data-t="navGallery">Galerie</a>
+          <a href="#about" data-t="navAbout">O nás</a>
+          <a href="#contact" data-t="navContact">Kontakt</a>
         </nav>
         <div class="nav-right">
           <div class="lang">
@@ -148,7 +150,7 @@
             <span class="sep">/</span>
             <button id="langEn">EN</button>
           </div>
-          <a href="#contact" class="book" data-t="book">Rezervovat</a>
+          <a href="#contact" class="book" data-t="book">Objednat</a>
         </div>
       </header>
 
@@ -158,33 +160,33 @@
 
       <div class="card c1" data-at="0.08" data-span="0.16">
         <div class="inner">
-          <div class="eyebrow" data-t="c1e">Zal. 2014 — Paříž & New York</div>
-          <h2 data-t="c1t">Maison Lune</h2>
-          <p data-t="c1b">Couture ateliér pro dort, který korunuje svatební den.</p>
+          <div class="eyebrow" data-t="c1e">Domácí pekárna v Berouně</div>
+          <h2 data-t="c1t">U Lenky v troubě</h2>
+          <p data-t="c1b">Čerstvé dorty pečené s láskou a nejlepšími ingrediencemi.</p>
         </div>
       </div>
       <div class="card c2" data-at="0.30" data-span="0.15">
         <div class="inner">
-          <div class="eyebrow" data-t="c2e">Patro I</div>
-          <h2 data-t="c2t">Tvarováno ručně, nikdy do formy.</h2>
+          <div class="eyebrow" data-t="c2e">Naše specialita</div>
+          <h2 data-t="c2t">Ručně tvořené dorty, bez kompromisů.</h2>
         </div>
       </div>
       <div class="card c3" data-at="0.52" data-span="0.15">
         <div class="inner">
-          <div class="eyebrow" data-t="c3e">Signature</div>
-          <p data-t="c3b">Vanilkové génoise s bourbonem, crème fraîche, normandské máslo — dokončeno jedlým 24k zlatem a růžemi řezanými téhož rána.</p>
+          <div class="eyebrow" data-t="c3e">Oblíbená volba</div>
+          <p data-t="c3b">Vanilkový dort s čerstvým ovocem a domácím krémem, zdobený čerstvými květinami z místního trhu. Každý dort je jedinečný a připravený s péčí.</p>
         </div>
       </div>
       <div class="card c4" data-at="0.74" data-span="0.15">
         <div class="inner">
-          <div class="eyebrow" data-t="c4e">Kompozice č. 04</div>
-          <h2 data-t="c4t">Čtyři patra. Jedno tiché gesto.</h2>
+          <div class="eyebrow" data-t="c4e">Naše vášeň</div>
+          <h2 data-t="c4t">Kvalita a tradice v každém kousku.</h2>
         </div>
       </div>
       <div class="card c5" data-at="0.94" data-span="0.12" style="transform:translateX(-50%)">
         <div class="inner">
-          <div class="eyebrow" data-t="c5e">Pokračujte níže</div>
-          <h2 data-t="c5t">Dort, promyšlený.</h2>
+          <div class="eyebrow" data-t="c5e">Více informací</div>
+          <h2 data-t="c5t">Objevte naši nabídku.</h2>
         </div>
       </div>
 
@@ -196,20 +198,20 @@
     <div class="wrap">
       <div class="gallery-head">
         <div>
-          <div class="eyebrow" data-t="galleryEyebrow">Ateliér — Vybrané práce</div>
-          <h2 data-t="galleryTitle" style="margin-top:16px">Každá zakázka, jediná edice.</h2>
+          <div class="eyebrow" data-t="galleryEyebrow">Naše tvorba</div>
+          <h2 data-t="galleryTitle" style="margin-top:16px">Každý dort je jedinečný.</h2>
         </div>
-        <a href="#contact" class="gallery-link" data-t="galleryLink">Celé portfolio →</a>
+        <a href="#contact" class="gallery-link" data-t="galleryLink">Objednat dort →</a>
       </div>
       <div class="grid">
-        <figure class="tile t1"><img loading="lazy" src="assets/gallery-1.jpg" alt=""><figcaption data-t="cap0">č. 014 — Lune in Bloom</figcaption></figure>
+        <figure class="tile t1"><img loading="lazy" src="assets/gallery-1.jpg" alt=""><figcaption data-t="cap0">Dort s čerstvým ovocem</figcaption></figure>
         <div class="t-col">
-          <figure class="tile t2"><img loading="lazy" src="assets/gallery-2.jpg" alt=""><figcaption data-t="cap1">Detail — zlatý plátek</figcaption></figure>
-          <figure class="tile t3"><img loading="lazy" src="assets/gallery-3.jpg" alt=""><figcaption data-t="cap2">č. 011 — Solitaire</figcaption></figure>
+          <figure class="tile t2"><img loading="lazy" src="assets/gallery-2.jpg" alt=""><figcaption data-t="cap1">Detail zdobení</figcaption></figure>
+          <figure class="tile t3"><img loading="lazy" src="assets/gallery-3.jpg" alt=""><figcaption data-t="cap2">Čokoládový dort</figcaption></figure>
         </div>
-        <figure class="tile t4"><img loading="lazy" src="assets/gallery-4.jpg" alt=""><figcaption data-t="cap3">Servis — stůl</figcaption></figure>
-        <figure class="tile t5"><img loading="lazy" src="assets/gallery-5.jpg" alt=""><figcaption data-t="cap4">První řez</figcaption></figure>
-        <figure class="tile t6"><img loading="lazy" src="assets/gallery-6.jpg" alt=""><figcaption data-t="cap5">č. 019 — Rose Brume</figcaption></figure>
+        <figure class="tile t4"><img loading="lazy" src="assets/gallery-4.jpg" alt=""><figcaption data-t="cap3">Slavnostní stůl</figcaption></figure>
+        <figure class="tile t5"><img loading="lazy" src="assets/gallery-5.jpg" alt=""><figcaption data-t="cap4">První kousek</figcaption></figure>
+        <figure class="tile t6"><img loading="lazy" src="assets/gallery-6.jpg" alt=""><figcaption data-t="cap5">Dort s květinami</figcaption></figure>
       </div>
     </div>
   </section>
@@ -218,14 +220,14 @@
 
   <section id="about" class="block">
     <div class="wrap-sm about-grid">
-      <div class="about-l"><div class="eyebrow" data-t="maisonEyebrow">Maison</div></div>
+      <div class="about-l"><div class="eyebrow" data-t="aboutEyebrow">O nás</div></div>
       <div class="about-r">
-        <p class="lead" data-t="maisonLead">Maison Lune byl založen v úzké kuchyni v pařížském Marais v roce 2014 cukrářkou <em>Hélène Auberge</em>, s jediným přesvědčením — že svatební dort není dezert, ale tichý jedlý monument.</p>
-        <p class="about-body" data-t="maisonBody">Každou sezónu přijímáme omezený počet zakázek. Každý dort vzniká v ateliéru spolu s párem — chuť, silueta, květiny z ranního trhu — a je doručen ručně odpoledne před oslavou.</p>
+        <p class="lead" data-t="aboutLead">U Lenky v troubě je rodinná pekárna v Berouně, kterou vede <em>Lenka</em> se svou vášní pro kvalitní dorty a sladké pokušení.</p>
+        <p class="about-body" data-t="aboutBody">Každý dort je připravován s láskou a péčí. Používáme pouze nejlepší ingredience a čerstvé suroviny. Každá objednávka je pro nás příležitostí vytvořit něco speciálního pro vaši oslavu.</p>
         <div class="stats">
-          <div><div class="stat-k">120</div><div class="stat-v" data-t="stat0">zakázek ročně</div></div>
-          <div><div class="stat-k">2</div><div class="stat-v" data-t="stat1">ateliéry — Paříž, NY</div></div>
-          <div><div class="stat-k">48h</div><div class="stat-v" data-t="stat2">z pece až k oltáři</div></div>
+          <div><div class="stat-k">5★</div><div class="stat-v" data-t="stat0">spokojení zákazníci</div></div>
+          <div><div class="stat-k">24h</div><div class="stat-v" data-t="stat1">otevřeno denně</div></div>
+          <div><div class="stat-k">∞</div><div class="stat-v" data-t="stat2">láska v každém dortu</div></div>
         </div>
       </div>
     </div>
@@ -234,29 +236,29 @@
   <section id="contact" class="block contact">
     <div class="wrap-sm contact-grid">
       <div class="contact-l">
-        <div class="eyebrow" data-t="contactEyebrow">Poptávka</div>
-        <h2 data-t="contactTitle">Začněte zakázku.</h2>
-        <p class="contact-body" data-t="contactBody">Povězte nám o dni. Odpovídáme na každou poptávku do dvou pracovních dnů a rezervujeme šest až devět měsíců dopředu.</p>
+        <div class="eyebrow" data-t="contactEyebrow">Objednat</div>
+        <h2 data-t="contactTitle">Objednejte si dort.</h2>
+        <p class="contact-body" data-t="contactBody">Povězte nám o vaší oslavě a vašich přáních. Rádi si s vámi domluví detaily a připravíme dort podle vašich představ.</p>
         <div class="contact-info">
-          <div>atelier@maisonlune.com</div>
-          <div>+33 1 42 00 00 00</div>
-          <div class="muted">17 rue des Archives, 75004 Paris<br>88 Greene Street, New York</div>
+          <div>lenka@ulenkyv troube.cz</div>
+          <div>+420 311 621 XXX</div>
+          <div class="muted">266 01 Beroun 1<br>Česká republika</div>
         </div>
       </div>
       <form class="contact-r" onsubmit="event.preventDefault()">
         <label class="field"><span class="eyebrow" data-t="name">Jméno</span><input type="text"></label>
         <label class="field"><span class="eyebrow" data-t="email">E-mail</span><input type="email"></label>
-        <label class="field"><span class="eyebrow" data-t="date">Datum svatby</span><input type="text" data-t-ph="datePh" placeholder="červen 2026"></label>
-        <label class="field"><span class="eyebrow" data-t="msg">Povězte nám o dni</span><textarea rows="3"></textarea></label>
-        <button class="send" type="submit"><span data-t="send">Odeslat poptávku</span><span>→</span></button>
+        <label class="field"><span class="eyebrow" data-t="date">Datum oslavy</span><input type="text" data-t-ph="datePh" placeholder="červen 2026"></label>
+        <label class="field"><span class="eyebrow" data-t="msg">Povězte nám o své oslavě</span><textarea rows="3"></textarea></label>
+        <button class="send" type="submit"><span data-t="send">Odeslat objednávku</span><span>→</span></button>
       </form>
     </div>
   </section>
 
   <footer>
     <div class="foot">
-      <div data-t="footerL">Maison Lune — Svatební ateliér</div>
-      <div>© <span id="yr"></span> <span data-t="footerR">— Všechny dorty stavěny ručně.</span></div>
+      <div data-t="footerL">U Lenky v troubě — Domácí pekárna</div>
+      <div>© <span id="yr"></span> <span data-t="footerR">— Pečeno s láskou.</span></div>
     </div>
   </footer>
 </main>
@@ -265,37 +267,37 @@
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 const T = {
-  cs:{navAtelier:"Ateliér",navMaison:"Maison",navInquire:"Poptat",book:"Rezervovat",scroll:"Scroll",
-    galleryEyebrow:"Ateliér — Vybrané práce",galleryTitle:"Každá zakázka, jediná edice.",galleryLink:"Celé portfolio →",
-    cap0:"č. 014 — Lune in Bloom",cap1:"Detail — zlatý plátek",cap2:"č. 011 — Solitaire",cap3:"Servis — stůl",cap4:"První řez",cap5:"č. 019 — Rose Brume",
-    maisonEyebrow:"Maison",
-    maisonLead:'Maison Lune byl založen v úzké kuchyni v pařížském Marais v roce 2014 cukrářkou <em>Hélène Auberge</em>, s jediným přesvědčením — že svatební dort není dezert, ale tichý jedlý monument.',
-    maisonBody:"Každou sezónu přijímáme omezený počet zakázek. Každý dort vzniká v ateliéru spolu s párem — chuť, silueta, květiny z ranního trhu — a je doručen ručně odpoledne před oslavou.",
-    stat0:"zakázek ročně",stat1:"ateliéry — Paříž, NY",stat2:"z pece až k oltáři",
-    contactEyebrow:"Poptávka",contactTitle:"Začněte zakázku.",contactBody:"Povězte nám o dni. Odpovídáme na každou poptávku do dvou pracovních dnů a rezervujeme šest až devět měsíců dopředu.",
-    name:"Jméno",email:"E-mail",date:"Datum svatby",datePh:"červen 2026",msg:"Povězte nám o dni",send:"Odeslat poptávku",
-    footerL:"Maison Lune — Svatební ateliér",footerR:"— Všechny dorty stavěny ručně.",
-    c1e:"Zal. 2014 — Paříž & New York",c1t:"Maison Lune",c1b:"Couture ateliér pro dort, který korunuje svatební den.",
-    c2e:"Patro I",c2t:"Tvarováno ručně, nikdy do formy.",
-    c3e:"Signature",c3b:"Vanilkové génoise s bourbonem, crème fraîche, normandské máslo — dokončeno jedlým 24k zlatem a růžemi řezanými téhož rána.",
-    c4e:"Kompozice č. 04",c4t:"Čtyři patra. Jedno tiché gesto.",
-    c5e:"Pokračujte níže",c5t:"Dort, promyšlený."
+  cs:{navGallery:"Galerie",navAbout:"O nás",navContact:"Kontakt",book:"Objednat",scroll:"Scroll",
+    galleryEyebrow:"Naše tvorba",galleryTitle:"Každý dort je jedinečný.",galleryLink:"Objednat dort →",
+    cap0:"Dort s čerstvým ovocem",cap1:"Detail zdobení",cap2:"Čokoládový dort",cap3:"Slavnostní stůl",cap4:"První kousek",cap5:"Dort s květinami",
+    aboutEyebrow:"O nás",
+    aboutLead:'U Lenky v troubě je rodinná pekárna v Berouně, kterou vede <em>Lenka</em> se svou vášní pro kvalitní dorty a sladké pokušení.',
+    aboutBody:"Každý dort je připravován s láskou a péčí. Používáme pouze nejlepší ingredience a čerstvé suroviny. Každá objednávka je pro nás příležitostí vytvořit něco speciálního pro vaši oslavu.",
+    stat0:"spokojení zákazníci",stat1:"otevřeno denně",stat2:"láska v každém dortu",
+    contactEyebrow:"Objednat",contactTitle:"Objednejte si dort.",contactBody:"Povězte nám o vaší oslavě a vašich přáních. Rádi si s vámi domluví detaily a připravíme dort podle vašich představ.",
+    name:"Jméno",email:"E-mail",date:"Datum oslavy",datePh:"červen 2026",msg:"Povězte nám o své oslavě",send:"Odeslat objednávku",
+    footerL:"U Lenky v troubě — Domácí pekárna",footerR:"— Pečeno s láskou.",
+    c1e:"Domácí pekárna v Berouně",c1t:"U Lenky v troubě",c1b:"Čerstvé dorty pečené s láskou a nejlepšími ingrediencemi.",
+    c2e:"Naše specialita",c2t:"Ručně tvořené dorty, bez kompromisů.",
+    c3e:"Oblíbená volba",c3b:"Vanilkový dort s čerstvým ovocem a domácím krémem, zdobený čerstvými květinami z místního trhu. Každý dort je jedinečný a připravený s péčí.",
+    c4e:"Naše vášeň",c4t:"Kvalita a tradice v každém kousku.",
+    c5e:"Více informací",c5t:"Objevte naši nabídku."
   },
-  en:{navAtelier:"Atelier",navMaison:"Maison",navInquire:"Inquire",book:"Book",scroll:"Scroll",
-    galleryEyebrow:"The Atelier — Selected Work",galleryTitle:"Each commission, a single edition.",galleryLink:"View full portfolio →",
-    cap0:"No. 014 — Lune in Bloom",cap1:"Detail — gold leaf",cap2:"No. 011 — Solitaire",cap3:"Service — the table",cap4:"The first slice",cap5:"No. 019 — Rose Brume",
-    maisonEyebrow:"The Maison",
-    maisonLead:'Maison Lune was founded in a narrow Marais kitchen in 2014 by pastry chef <em>Hélène Auberge</em>, with a single conviction — that the wedding cake is not a dessert but a quiet, edible monument.',
-    maisonBody:"We accept a limited number of commissions each season. Every cake is composed in studio with the couple — flavour, silhouette, flowers from the morning market — and delivered, by hand, the afternoon of the celebration.",
-    stat0:"commissions a year",stat1:"ateliers — Paris, NY",stat2:"from oven to aisle",
-    contactEyebrow:"Inquire",contactTitle:"Begin a commission.",contactBody:"Tell us about the day. We respond to every inquiry within two business days, and book six to nine months in advance.",
-    name:"Name",email:"Email",date:"Wedding date",datePh:"June 2026",msg:"Tell us about the day",send:"Send inquiry",
-    footerL:"Maison Lune — Atelier de Mariage",footerR:"— All cakes hand-built.",
-    c1e:"Est. 2014 — Paris & New York",c1t:"Maison Lune",c1b:"A couture atelier for the cakes that crown a wedding day.",
-    c2e:"Tier I",c2t:"Sculpted by hand, never by mould.",
-    c3e:"The Signature",c3b:"Vanilla bourbon génoise, crème fraîche, cultured butter from Normandy — finished with edible 24k gold and garden roses cut the morning of.",
-    c4e:"Composition no. 04",c4t:"Four tiers. One quiet gesture.",
-    c5e:"Scroll to continue",c5t:"A cake, considered."
+  en:{navGallery:"Gallery",navAbout:"About",navContact:"Contact",book:"Order",scroll:"Scroll",
+    galleryEyebrow:"Our creations",galleryTitle:"Each cake is unique.",galleryLink:"Order a cake →",
+    cap0:"Cake with fresh fruit",cap1:"Decoration detail",cap2:"Chocolate cake",cap3:"Festive table",cap4:"First slice",cap5:"Cake with flowers",
+    aboutEyebrow:"About Us",
+    aboutLead:'U Lenky v troubě is a family bakery in Beroun, run by <em>Lenka</em> with a passion for quality cakes and sweet delights.',
+    aboutBody:"Every cake is prepared with love and care. We use only the finest ingredients and fresh materials. Every order is an opportunity for us to create something special for your celebration.",
+    stat0:"satisfied customers",stat1:"open 24 hours",stat2:"love in every cake",
+    contactEyebrow:"Order",contactTitle:"Order your cake.",contactBody:"Tell us about your celebration and your wishes. We are happy to discuss the details with you and prepare a cake according to your ideas.",
+    name:"Name",email:"Email",date:"Celebration date",datePh:"June 2026",msg:"Tell us about your celebration",send:"Send order",
+    footerL:"U Lenky v troubě — Family Bakery",footerR:"— Baked with love.",
+    c1e:"Family bakery in Beroun",c1t:"U Lenky v troubě",c1b:"Fresh cakes baked with love and the finest ingredients.",
+    c2e:"Our specialty",c2t:"Hand-crafted cakes, no compromises.",
+    c3e:"Customer favorite",c3b:"Vanilla cake with fresh fruit and homemade cream, decorated with fresh flowers from the local market. Every cake is unique and prepared with care.",
+    c4e:"Our passion",c4t:"Quality and tradition in every piece.",
+    c5e:"Learn more",c5t:"Discover our offer."
   }
 };
 let lang = 'cs';
